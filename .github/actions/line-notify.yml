@@ -1,5 +1,8 @@
 name: 'line-notify'
-            
+
+on: 
+  workflow_dispatch:
+
 - name: LINE Notify Actions
   uses: louis70109/line-notify-action@v0.2.0
   with:
