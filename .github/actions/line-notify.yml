@@ -1,0 +1,7 @@
+name: 'line-notify'
+            
+- name: LINE Notify Actions
+  uses: louis70109/line-notify-action@v0.2.0
+  with:
+    token: ${{ secrets.LINE_NOTIFY_TOKEN }}
+    message: 'LINE Notify test message'
