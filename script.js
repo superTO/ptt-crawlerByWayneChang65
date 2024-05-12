@@ -19,7 +19,7 @@ async function main() {
 		// filter data
 		const filteredData = FilterOption(TransformToObject(ptt), item.option)
 		
-		consoleOut(filteredData);
+		consoleOut(item.boardName, filteredData);
 	}
 
 	// *** Close      ***
@@ -29,16 +29,9 @@ async function main() {
 //////////////////////////////////////////
 ///           Console Out              ///
 ////////////////////////////////////////// 
-function consoleOut(ptt) {
-// interface PTTResult {
-//   approval: number;
-//   title: string;
-//   date: string;
-//   author: string;
-//   mark: string;
-//   url: string;
-// }
+function consoleOut(boardName, ptt) {
 	console.log('-----------------------------');
+	console.log('Board Name = ' + boardName);
 
 	for (let item of ptt) {
 		console.log(
