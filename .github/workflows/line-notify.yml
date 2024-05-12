@@ -5,6 +5,8 @@ on:
 
 jobs:
   line-notify-send-message:
+    # assign github Environments
+    environment: main
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
