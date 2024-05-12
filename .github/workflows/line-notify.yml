@@ -11,6 +11,6 @@ jobs:
       - name: LINE Notify
         uses: snow-actions/line-notify@v1.1.0      
         with:
-          token: ${{ secrets.LINE_NOTIFY_TOKEN }}
+          access_token: ${{ secrets.LINE_NOTIFY_TOKEN }}
           message: 'LINE Notify test message'
 
