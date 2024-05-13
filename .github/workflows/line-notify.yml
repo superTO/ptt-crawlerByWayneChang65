@@ -9,25 +9,6 @@ on:
 #   TEST_DATA: ${{ vars.TEST_DATA }}
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [20.x]
-
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Build
-      run: |
-        npm install
-        node script.js
   line-notify-send-message:
     # assign github Environments
     environment: main
@@ -35,6 +16,17 @@ jobs:
     
     steps:
       - uses: actions/checkout@master
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4.0.2
+        with:
+          # Version Spec of the version to use in SemVer notation.
+          # It also emits such aliases as lts, latest, nightly and canary builds
+          # Examples: 12.x, 10.15.1, >=10.15.0, lts/Hydrogen, 16-nightly, latest, node
+          node-version: '20.x'
+      - run: |
+          npm install
+          node script.js
 
       - name: Read log file
         id: log
