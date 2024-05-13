@@ -3,11 +3,22 @@ name: 'line-notify'
 on: 
   workflow_dispatch:
 
-env:
-  # Setting an environment variable with the value of a configuration variable
-  TEST_DATA: ${{ vars.TEST_DATA }}
+# env:
+#   # Setting an environment variable with the value of a configuration variable
+#   TEST_DATA: ${{ vars.TEST_DATA }}
 
 jobs:
+  read-crawler-log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Read log file
+        id: log
+        uses: juliangruber/read-file-action@v1.1.7
+        with:
+          path: ./log/crawler_log.txt
+
   line-notify-send-message:
     # assign github Environments
     environment: main
@@ -19,5 +30,6 @@ jobs:
         with:
           access_token: ${{ secrets.LINE_NOTIFY_TOKEN }}
           # 接下來要讓這邊改成 爬蟲回傳的資料
-          message: ${{ env.TEST_DATA }}
+          # message: ${{ env.TEST_DATA }}
+          message: ${{ steps.log.outputs.content }}
 
