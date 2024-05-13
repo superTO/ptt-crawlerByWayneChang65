@@ -14,5 +14,6 @@ jobs:
         uses: snow-actions/line-notify@v1.1.0      
         with:
           access_token: ${{ secrets.LINE_NOTIFY_TOKEN }}
-          message: 'LINE Notify test message'
+          # 接下來要讓這邊改成 爬蟲回傳的資料
+          message: ${{ env.TEST_DATA }}
 
