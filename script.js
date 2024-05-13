@@ -1,5 +1,6 @@
 const { searchOption } = require('./data');
 const ptt_crawler = require('./lib/ptt_crawler.js');
+const fs = require('node:fs');
 
 main();
 
@@ -9,6 +10,7 @@ async function main() {
 
 	const searchList = searchOption;
 
+	let content = '';
 	for (let item of searchList) {
 		const ptt = await ptt_crawler.getResults({
 			board: item.boardName,
@@ -18,9 +20,14 @@ async function main() {
 
 		// filter data
 		const filteredData = FilterOption(TransformToObject(ptt), item.option)
-		
-		consoleOut(item.boardName, filteredData);
+		// generate log content
+		content += filteredData.length > 0 ? `---${item.boardName}---\n` : ``;
+		for (let item of filteredData) {
+			content += item.approval + ' 推 - ' + item.title + ' - 日期:' + item.date + ' - ' + item.author + ' - ' + item.url + '\n';
+		}
 	}
+
+	fs.writeFileSync('./log/crawler_log.txt', content)
 
 	// *** Close      ***
 	await ptt_crawler.close();
@@ -30,20 +37,20 @@ async function main() {
 ///           Console Out              ///
 ////////////////////////////////////////// 
 function consoleOut(boardName, ptt) {
-	console.log('-----------------------------');
+	console.log('\n');
 	console.log('Board Name = ' + boardName);
 
 	for (let item of ptt) {
 		console.log(
-			item.approval + ' 推 -   ' + item.title + '       - 日期:' + item.date +
-			' -   ' + item.author + ' -    ' + item.mark + ' - ' + item.url
+			item.approval + ' 推 - ' + item.title + ' - 日期:' + item.date +
+			' - ' + item.author + ' - ' + item.url
 		)
 	}
 }
 
 /**
  * @param {*} ptt: PTTResponse
- * @returns PTTResult
+ * @returns PTTResult[]
  */
 function TransformToObject(ptt) {
 	let result = [];
@@ -62,8 +69,8 @@ function TransformToObject(ptt) {
 }
 
 /**
- * @param {*} ptt: PTTResult
- * @return {*} PTTResult
+ * @param {*} ptt: PTTResult[]
+ * @return {*} PTTResult[]
  */
 function FilterOption(ptt, options){
 	return ptt
