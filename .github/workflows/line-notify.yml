@@ -2,7 +2,8 @@ name: 'line-notify'
 
 on: 
   workflow_dispatch:
-
+  schedule:
+    - cron:  "0 22 * * *" # 要用臺灣時間減8小時。例如如果要在臺灣的半夜4點執行，則需要設為 "0 20 * * *"
 # env:
 #   # Setting an environment variable with the value of a configuration variable
 #   TEST_DATA: ${{ vars.TEST_DATA }}
