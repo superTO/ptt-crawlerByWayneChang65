@@ -3,6 +3,10 @@ name: 'line-notify'
 on: 
   workflow_dispatch:
 
+env:
+  # Setting an environment variable with the value of a configuration variable
+  TEST_DATA: ${{ vars.TEST_DATA }}
+
 jobs:
   line-notify-send-message:
     # assign github Environments
