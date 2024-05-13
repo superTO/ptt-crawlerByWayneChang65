@@ -18,6 +18,11 @@ jobs:
         uses: juliangruber/read-file-action@v1.1.7
         with:
           path: ./log/crawler_log.txt
+      - name: Set log to LOG_CONTENT
+        # env: 
+        #   LOG_CONTENT: ${{ steps.log.outputs.content }}
+        run: |
+          echo "LOG_CONTENT=${{ steps.log.outputs.content }}" >> $GITHUB_ENV
 
   line-notify-send-message:
     # assign github Environments
@@ -31,5 +36,5 @@ jobs:
           access_token: ${{ secrets.LINE_NOTIFY_TOKEN }}
           # 接下來要讓這邊改成 爬蟲回傳的資料
           # message: ${{ env.TEST_DATA }}
-          message: ${{ steps.log.outputs.content }}
+          message: ${{ env.LOG_CONTENT }}
 
