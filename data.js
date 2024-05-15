@@ -9,14 +9,14 @@ var searchOption = [
 	}, 
 	{
 		boardName: 'Lifeismoney',
-		pages: 1,
+		pages: 3,
 		option : {
 			approval: 50
 		}
 	},
 	{
 		boardName: 'Stock',
-		pages: 1,
+		pages: 3,
 		option : {
 			authors: ['f204137', 'yinglinga', 'zesonpso']
 		}

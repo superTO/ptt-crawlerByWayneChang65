@@ -8,10 +8,8 @@ async function main() {
 	// *** Initialize ***
 	await ptt_crawler.initialize();
 
-	const searchList = searchOption;
-
 	let content = '';
-	for (let item of searchList) {
+	for (let item of searchOption) {
 		const ptt = await ptt_crawler.getResults({
 			board: item.boardName,
 			pages: item.pages,
