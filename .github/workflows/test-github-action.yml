@@ -21,5 +21,4 @@ jobs:
           node-version: '20.12.2'
       - run: |
           npm install
-          node ./examples/demo.js
-          node ./examples/demo2.js
+          node ./examples/surfingOtherWebsite.js
