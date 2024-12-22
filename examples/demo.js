@@ -6,7 +6,7 @@ async function main(){
 	let board, pages;
 
 	// *** Initialize *** 
-	await ptt_crawler.initialize();
+	await ptt_crawler.initialize({headless: true});
 
 	// *** GetResult  ***
 	let ptt;
