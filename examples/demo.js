@@ -11,7 +11,7 @@ async function main(){
 	// *** GetResult  ***
 	let ptt;
 	ptt = await ptt_crawler.getResults(); // Default Options
-	consoleOut('Tos', 1, ptt);
+	consoleOut('Tos', 2, ptt);
 
 	pages = 3;
 	ptt = await ptt_crawler.getResults({
