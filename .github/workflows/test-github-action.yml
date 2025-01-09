@@ -1,0 +1,24 @@
+name: 'test-github-action'
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  line-notify-send-message:
+    # assign github Environments
+    # environment: line-message-api
+    runs-on: ubuntu-22.04
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js environment & implement domo.js
+        uses: actions/setup-node@v4.0.2
+        with:
+          # Version Spec of the version to use in SemVer notation.
+          # It also emits such aliases as lts, latest, nightly and canary builds
+          # Examples: 12.x, 10.15.1, >=10.15.0, lts/Hydrogen, 16-nightly, latest, node
+          node-version: '20.12.2'
+      - run: |
+          npm install
+          node ./examples/demo.js
