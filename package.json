@@ -34,7 +34,7 @@
   "dependencies": {
     "@waynechang65/fml-consolelog": "^1.1.6",
     "is-inside-container": "^1.0.0",
-    "puppeteer": "^19.11.1"
+    "puppeteer": "^23.11.1"
   },
   "devDependencies": {
     "eslint": "^8.25.0",
