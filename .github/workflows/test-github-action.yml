@@ -21,6 +21,13 @@ jobs:
           node-version: '20.12.2'
       - run: |
           npm install
+      - name: Install Chromium
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser
+
+      - name: Check Chrome version # 新增的步驟
+        run: google-chrome --version
 
       - name: run demo.js
         uses: actions/setup-node@v4.0.2
